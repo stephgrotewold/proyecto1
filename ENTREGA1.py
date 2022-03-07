@@ -424,7 +424,7 @@ while (opcion != 3):
                                                 #Resta la cantidad del inventario
                                                 rest_cantidad(verify_name(namecompra,cantidadcompra,seccion),cantidadcompra, seccion)
                                                 #Agrega el producto al carrito
-                                                item_database_carrito.append({'item_name':namecompra,'cantidad': cantidadcompra, 'pasillo':seccion})                                                                     cantidadcompra,'pasillo':seccion})
+                                                item_database_carrito.append({'item_name':namecompra,'cantidad': cantidadcompra,'pasillo':seccion})
                                                 #Agrega el producto a la LinkedList
                                                 items_comprados.insert(namecompra, cont,items_comprados)
                                                 #Agrega el pago
