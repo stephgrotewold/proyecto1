@@ -413,14 +413,7 @@ while (opcion != 3):
                                             #Resta la cantidad del inventario
                                             rest_cantidad(verify_name(namecompra,cantidadcompra,seccion), cantidadcompra,seccion)
                                             #Agrega el producto al carrito
-                                            item_database_carrito.append({
-                                                'item_name':
-                                                namecompra,
-                                                'cantidad':
-                                                cantidadcompra,
-                                                'pasillo':
-                                                seccion
-                                            })
+                                            item_database_carrito.append({'item_name':namecompra,'cantidad':cantidadcompra,'pasillo':seccion})
                                             #Agrega el pago
                                             pagos.append(total(namecompra,cantidadcompra, seccion))
                                         else:
@@ -431,7 +424,7 @@ while (opcion != 3):
                                                 #Resta la cantidad del inventario
                                                 rest_cantidad(verify_name(namecompra,cantidadcompra,seccion),cantidadcompra, seccion)
                                                 #Agrega el producto al carrito
-                                                item_database_carrito.append({'item_name':namecompra,'cantidad':                                                                      cantidadcompra,'pasillo':seccion})
+                                                item_database_carrito.append({'item_name':namecompra,'cantidad': cantidadcompra, 'pasillo':seccion})                                                                     cantidadcompra,'pasillo':seccion})
                                                 #Agrega el producto a la LinkedList
                                                 items_comprados.insert(namecompra, cont,items_comprados)
                                                 #Agrega el pago
@@ -734,12 +727,7 @@ while (opcion != 3):
                                             print('ID ya existente')
                                         else:
                                             #Ingresa el nuevo producto
-                                            seccion.append({
-                                                'item_id': id,
-                                                'item_name': name,
-                                                'precio': price,
-                                                'cantidad': quantity
-                                            })
+                                            seccion.append({'item_id': id,'item_name': name,'precio': price,'cantidad': quantity})
                                             print('Producto ingresado con exito')
                                 else:
                                     print('Ingrese número(s) positivo(s)')
