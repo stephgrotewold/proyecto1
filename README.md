@@ -37,7 +37,7 @@ COMPRAS:
 
 - Salir
   Output:
-  * Rergresa al menu principal.
+  * Rergresa al menú principal.
 
 
 
@@ -47,7 +47,7 @@ INVENTARIO:
     * Ususario: admin
     * Contraseña: contrasena 
     Output:
-    * Muestra el menu para añadir cantidad, remover cantidad, modificar productos, mostrar productos, añadir item, eliminar item, salir.
+    * Muestra el menú para añadir cantidad, remover cantidad, modificar productos, mostrar productos, añadir item, eliminar item, salir.
 
 
   - Añadir Cantidad
@@ -114,5 +114,5 @@ INVENTARIO:
 
   - Salir
     Output:
-    * Regresa al menu principal.
+    * Regresa al menú principal.
 
