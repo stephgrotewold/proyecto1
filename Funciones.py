@@ -1,4 +1,12 @@
 from LecturaArchivoTexto import actualizar
+import cProfile
+from rich.console import Console
+from rich.theme import Theme
+custom_theme = Theme({"success": "green", "error": "bold red"})
+console = Console(theme=custom_theme)
+
+#cProfile.run('foo()')
+
 #Sumar a la cantidad de productos de un item
 def sum_cantidad(id, cantidad, base_de_datos):
 
@@ -38,8 +46,8 @@ def edit_name(id, nombre, base_de_datos):
         if item['item_id'] == id:
             item['item_name'] = nombre
             actualizar()
-            return print('Nombre actualizado con exito')
-    return print('Error, ID no encontrada')
+            return console.print('Nombre actualizado con exito', style="success")
+    return console.print('Error, ID no encontrada', style="error")
 
 
 #Modificar el precio de un producto
@@ -71,7 +79,7 @@ def edit_fecha(id,fecha,base_de_datos):
         if item['item_id']==id:
             item['caducidad']=fecha
             actualizar()
-            return print('Producto(s) eliminados con exito')
+            return console.print('Fecha de caducidad actualizada con éxito', style="success")
 
 
 #Eliminar un item
@@ -159,12 +167,3 @@ def positivo(num):
         return 1
     else:
         return 0
-
-#Se utiliza para que no se pierda el archvio original de texto en el momento de usar el unittesting y profiling
-def reparar(arr):
-    from LecturaArchivoTexto import productos
-    productos.clear()
-    for item in arr:
-        productos.append(item)
-    actualizar()
-    return 1
