@@ -116,3 +116,13 @@ INVENTARIO:
     Output:
     * Regresa al menú principal.
 
+
+UNIT TESTING
+Funciones
+![image](https://user-images.githubusercontent.com/97777878/166841861-af8f0c3a-5fce-4223-9889-160d12614641.png)
+
+Queue
+![image](https://user-images.githubusercontent.com/97777878/166842036-a99e5743-0261-44c9-a494-3e5eba621687.png)
+
+
+
