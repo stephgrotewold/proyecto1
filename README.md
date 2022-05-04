@@ -1,20 +1,118 @@
-# proyecto1
+# proyecto
 
-En esta primera entrega, concluimos dos etapas de nuestro sistema de inventario y compras. La opcion de inventario, requiere que se autentique (Usuario: admin ; Contraseña: contrasena) 
-Dentro de las opciones de inventario encontramos las siguientes:
-1.Añadir cantidad: Dentro de esta se puede añadir a la cantidad de productos existentes.
-2.Remover cantidad: Se puede descontar la cantidad ingresada a un producto, ya existente. Esto se valida que si hayan suficientes productos para que no haya inventario negativo.
-3.Modificar productos: Dentro de esto encontramos un sub-menu. En donde encontramos que podemos a)Modificar el nombre b)Modificar el precio c)Modificar la cantidad.
-4.Mostras productos: Muestra la base de datos actualizada de todos los productos existentes
-5.Añadir un item: Permite crear un item desde cero, en donde tenemos que ingresar el ID, nombre, el precio y la cantidad.
-6.Eliminar un item: Este nos permite eliminar un item, ya sea existe o nuevo y borra todo el item.
-7.Salir: Nos regresa al menu principal.
+El proyecto tiene dos secciones, compras e inventario. 
 
-En nuestra opcion de compra tenemos lo siguiente: 
-1. Agregar productos al carrito: Al ingresar el nombre valida que exista el producto y nos pide que cantidad queremos comprar.
-2. Eliminar productos del carrito: Nos permite ingresar que producto del carrito queremos eliminar simplemente indicando el numero del producto que ya no queremos.
-3. Mostrar carreta: Podemos verificar que tenemos dentro del carrito y todas las actualizaciones que realizamos en el mismo.
-4. CheckOut: Nos genera la compra de lo que esta en el carrito y nos muestra el total que tenemos a pagar.
-5. Salir: Nos regresa al menu principal.
+SEGUNDA ENTREGA: 
+Para esta segunda entrega, se convirtió la base de datos a un archivo de texto. Se agregaron fechas de caducidad a los productos, los cuales son ordenados por medio de un heapsort(del más próximo a vencer al menos próximo). También se utilizó un queue para eliminar los productos vencido o próximos a vencer. 
 
+
+REQUISITOS:
+- Librería Rich ($pip install rich)
+- Archivo de texto (database.txt)
+
+COMPRAS:
+- Agregar productos al carrito
+  Input: 
+  * Nombre del producto
+  Output:
+  * Valida que existe la cantidad del producto.
+  * Actualiza la base de datos quitando el producto del inventario.
+   
+- Eliminar productos del carrito
+  Input:
+  * La posición en que se encuentra el producto en el carrito.
+  Output: 
+  * Elimina el producto del carrito.
+  * Actualiza la base de datos agregando el producto de regreso al inventario.
+
+- Mostrar carrito
+  Output:
+  * Muestra el contenido del carrito actualizado dentro de una tabla numerada.
+ 
+- Check-Out
+  Output:
+  * Muestra el carrito.
+  * Muestra el total pagado.
+  * Muestra un mensaje confirmando la transacción.
+
+- Salir
+  Output:
+  * Rergresa al menu principal.
+
+
+
+INVENTARIO: 
+  - Autenticación
+    Input:
+    * Ususario: admin
+    * Contraseña: contrasena 
+    Output:
+    * Muestra el menu para añadir cantidad, remover cantidad, modificar productos, mostrar productos, añadir item, eliminar item, salir.
+
+
+  - Añadir Cantidad
+    Input:
+    * ID
+    * Cantidad
+    Output: 
+    * Actualiza la base de datos.
+ 
+  - Remover Cantidad
+    Input:
+    * ID
+    * Cantidad
+    Output:
+    * Valida que el producto exista.
+    * Valida que haya la suficiente cantidad del producto para descontarlo.
+    * Actualiza la base de datos. 
+     
+  - Modificar Productos
+    Este permite hacer tres funciones
+    a) Modificar el nombre
+      Input: 
+      * ID
+      * Nuevo nombre
+      Output:
+      * Actualiza la base de datos.
+    b) Modificar el precio
+       Input: 
+        * ID
+        * Nuevo precio
+        Output:
+        * Actualiza la base de datos.
+    c) Modificar la cantidad
+       Input: 
+      * ID
+      * Nueva cantidad
+      Output:
+      * Actualiza la base de datos.
+    d) Modificar fecha de caducidad
+       Input: 
+      * ID
+      * Nueva fecha
+      Output:
+      * Actualiza la base de datos.
+    
+  - Mostrar Productos
+    Output:
+    * Muestra la base de datos de productos actualizada.
+    
+  - Añadir item
+    Input:
+    * ID
+    * Nombre
+    * Precio
+    * Cantidad
+    Output:
+    * Actualiza la base de datos agregando el nuevo item.
+
+  - Eliminar un item
+    Input: 
+    * ID
+    Output: 
+    * Actualiza la base datos quitando dicho item.
+
+  - Salir
+    Output:
+    * Regresa al menu principal.
 
