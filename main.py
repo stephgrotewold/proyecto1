@@ -13,8 +13,6 @@ from rich.table import Table
 from rich.prompt import Prompt
 import cProfile 
 
-#cProfile.run('foo()')
-
 cont=0
 productos_carrito=[]
 
@@ -46,11 +44,6 @@ while (opcion != 3):
     table.add_row("3.", "Salir")
     console.print(table)
 
-    #print('Ingrese que operación desea realizar \n')
-    #print('1. Comprar')
-    #print('2. Administrar inventario (requiere autenticación)')
-    #print('3. Salir')
-
     try:
         opcion = int(input("\n"))
     except:
@@ -76,11 +69,6 @@ while (opcion != 3):
                 table_compra.add_row("5.", "Salir")
                 console.print(table_compra)
                 
-                #print('1. Agregar productos al carrito')
-                #print('2. Eliminar productos del carrito')
-                #print('3. Mostrar carreta')
-                #print('4. Checkout')
-                #print('5. Salir')
                 try:
                     opcioncompra = int(input('Ingrese la opción que desea realizar: \n', ))
                 except:
@@ -212,11 +200,7 @@ while (opcion != 3):
                             
                         for i in range(cont):
                             table_carrito.add_row(str(acu), str(current.data))
-                        
-                            acu = acu + 1
-                            
-                            #print(acu, '. ', current.data)
-                            
+                            acu = acu + 1      
                             current = current.next
                         #Imprime la cantidad de pagos a realizar
                         console.print(table_carrito)
@@ -227,7 +211,6 @@ while (opcion != 3):
                             tot = tot + x
                         table_pagos.add_row(str(tot))
                         console.print(table_pagos)
-                        # print('Total a pagar: ', tot, '\n')
                         tot = 0
 
 
@@ -246,7 +229,6 @@ while (opcion != 3):
                         for i in range(cont):
                             table_carrito.add_row(str(acu), str(current.data))
                             console.print(table_carrito)
-                            #print(acu, '. ', current.data)
                             acu = acu + 1
                             current = current.next
                         #Imprime los pagos a realizar
@@ -256,7 +238,6 @@ while (opcion != 3):
                             tot = tot + x
                         table_pagos.add_row(str(tot))
                         console.print(table_pagos)
-                        #print('Total a pagar: ', tot, '\n')
                         tot = 0
                         #Borra los elementos
                         pagos.clear()
@@ -294,19 +275,6 @@ while (opcion != 3):
                     table_login.add_row("8.", "Salir")
 
                     console.print(table_login)
-
-
-
-                    
-                   # print('\n')
-                   # print('1. Añadir cantidad')
-                   # print('2. Remover cantidad')
-                   # print('3. Modificar productos')
-                   # print('4. Mostrar productos')
-                   # print('5. Añadir un item')
-                   # print('6. Eliminar un item')
-                   # print('7. Administrar productos vencidos')
-                   # print('8. Salir')
                     try:
                         opcion1 = int(input('Ingrese la opcion a realizar: \n'))
                     except:
@@ -363,12 +331,6 @@ while (opcion != 3):
                                 table_mod.add_row("5.", "Salir")
 
                                 console.print(table_mod)
-
-                                #print('1. Modificar nombre')
-                                #print('2. Modificar precio')
-                                #print('3. Modificar cantidad')
-                                #print('4. Modificar fecha de caducidad')
-                                #print('5. Salir')
                                 try:
                                     opcion2 = int(input('Ingrese la opcion a realizar: \n'))
                                 except:
