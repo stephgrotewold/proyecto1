@@ -1,11 +1,8 @@
 from LecturaArchivoTexto import actualizar
-import cProfile
 from rich.console import Console
 from rich.theme import Theme
 custom_theme = Theme({"success": "green", "error": "bold red"})
 console = Console(theme=custom_theme)
-
-#cProfile.run('foo()')
 
 #Sumar a la cantidad de productos de un item
 def sum_cantidad(id, cantidad, base_de_datos):
@@ -166,4 +163,14 @@ def positivo(num):
     if (num > 0):
         return 1
     else:
+        return 0
+
+#Se utiliza para que no se pierda el archvio original de texto en el momento de usar el unittesting y profiling
+def reparar(arr):
+    from LecturaArchivoTexto import productos
+    productos.clear()
+    for item in arr:
+        productos.append(item)
+    actualizar()
+    return 1
         return 0
