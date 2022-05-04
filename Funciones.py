@@ -173,4 +173,3 @@ def reparar(arr):
         productos.append(item)
     actualizar()
     return 1
-        return 0
