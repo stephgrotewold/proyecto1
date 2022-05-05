@@ -47,7 +47,7 @@ def elim_vencidos(arr):
     if flag==0:
         return 0
 
-#Elimina el primero elemento de la     
+#Elimina el primero elemento de la queue
 def pop_item(arr):
     if (len(arr)>0 and elim_item(arr[0]['item_id'], productos) == 1):
         console.print('Item eliminado con exito', style="success")
