@@ -1,6 +1,8 @@
+from BinarySearch import binarySearch
 from LecturaArchivoTexto import actualizar
 from rich.console import Console
 from rich.theme import Theme
+from datetime import datetime
 custom_theme = Theme({"success": "green", "error": "bold red"})
 console = Console(theme=custom_theme)
 
@@ -10,13 +12,13 @@ def sum_cantidad(id, cantidad, base_de_datos):
     if (type(id) not in [int] or type(cantidad) not in [int]):
         raise TypeError('ID o Cantidad no son enteros')
     else:
-        for item in base_de_datos:
-            if item['item_id'] == id:
-                item['cantidad'] = int(item['cantidad']) + cantidad
-                actualizar()
-                return 1
-        return 0
-
+        try:
+            item= binarySearch(base_de_datos, id)        
+            item['cantidad'] = int(item['cantidad']) + cantidad
+            actualizar(base_de_datos)
+            return 1
+        except:
+            return 0
 
 #Disminuir la cantidad de productos de un item
 def rest_cantidad(id, cantidad, base_de_datos):
@@ -24,73 +26,78 @@ def rest_cantidad(id, cantidad, base_de_datos):
     if (type(id) not in [int] or type(cantidad) not in [int]):
         raise TypeError('ID o Cantidad no son enteros')
     else:
-        for item in base_de_datos:
-            if item['item_id'] == id:
-                if (int(item['cantidad']) < cantidad):
-                    return 0
-                else:
-                    item['cantidad'] = int(item['cantidad']) - cantidad
-                    actualizar()
-                    return 1
-        return 0
+        try:
+            item= binarySearch(base_de_datos,id)
+            if (int(item['cantidad']) < cantidad):
+                return 0
+            else:
+                item['cantidad'] = int(item['cantidad']) - cantidad
+                actualizar(base_de_datos)
+                return 1
+        except:
+            return 0
 
 
 #Modificar el nombre de producto
 def edit_name(id, nombre, base_de_datos):
     if (type(id) not in [int]):
         raise TypeError('ID debe ser un entero')
-    for item in base_de_datos:
-        if item['item_id'] == id:
-            item['item_name'] = nombre
-            actualizar()
-            return console.print('Nombre actualizado con exito', style="success")
-    return console.print('Error, ID no encontrada', style="error")
+    try:
+        item=binarySearch(base_de_datos,id)
+        item['item_name'] = nombre
+        actualizar(base_de_datos)
+        return console.print('Nombre actualizado con exito', style="success")
+    except:
+        return console.print('Error, ID no encontrada', style="error")
 
 
 #Modificar el precio de un producto
 def edit_precio(id, precio, base_de_datos):
     if (type(id) not in [int] or type(precio) not in [int]):
         raise TypeError('ID o Precio deben ser enteros')
-    for item in base_de_datos:
-        if item['item_id'] == id:
-            item['precio'] = precio
-            actualizar()
-            return 1
-    return 0
+    try:
+        item=binarySearch(base_de_datos,id)
+        item['precio'] = precio
+        actualizar(base_de_datos)
+        return 1
+    except:
+        return 0
 
 
 #Modificar la cantidad de un producto
 def edit_cant(id, cantidad, base_de_datos):
     if (type(id) not in [int] or type(cantidad) not in [int]):
         raise TypeError('ID o Cantidad deben ser enteros')
-    for item in base_de_datos:
-        if item['item_id'] == id:
-            item['cantidad'] = cantidad
-            actualizar()
-            return 1
-    return 0
+    try:
+        item=binarySearch(base_de_datos,id)
+        item['cantidad'] = cantidad
+        actualizar(base_de_datos)
+        return 1
+    except:
+        return 0
 
 #Edita la fecha de caducidad de un item
 def edit_fecha(id,fecha,base_de_datos):
-    for item in base_de_datos:
-        if item['item_id']==id:
-            item['caducidad']=fecha
-            actualizar()
-            return console.print('Fecha de caducidad actualizada con éxito', style="success")
+    try:
+        item=binarySearch(base_de_datos,id)
+        item['caducidad']=fecha
+        actualizar(base_de_datos)
+        return console.print('Fecha de caducidad actualizada con éxito', style="success")
+    except:
+        print('I no encontrado')
 
 
 #Eliminar un item
 def elim_item(id, base_de_datos):
     if (type(id) not in [int]):
         raise TypeError('ID debe ser un entero')
-    cont = 0
-    for item in base_de_datos:
-        if item['item_id'] == id:
-            base_de_datos.pop(cont)
-            actualizar()
-            return 1
-        cont = cont + 1
-    return 0
+    try:
+        item=binarySearch(base_de_datos,id)
+        base_de_datos.remove(item)
+        actualizar(base_de_datos)
+        return 1
+    except:
+        return 0
 
 
 #Verificar si existe el producto
@@ -105,10 +112,12 @@ def search_name(nombre, base_de_datos):
 def verify_id(id, base_de_datos):
     if (type(id) not in [int]):
         raise TypeError('Ingrese un entero')
-    for item in base_de_datos:
-        if item['item_id'] == id:
-            return 0
-    return 1
+    
+    item=binarySearch(base_de_datos,id)
+    if item is None:
+        return 1
+    else:
+        return 0
 
 
 #Verifica si existe suficiente cantidad del item
@@ -131,14 +140,14 @@ def total(nombre, cantidad, base_de_datos):
             return cantidad * item['precio']
 
 
-#Retorna la cantidad al momento de eliminarse de la carrito
+#Retorna la cantidad al momento de eliminarse del carrito
 def saldar(nombre, cantidad, base_de_datos):
     if (type(cantidad) not in [int]):
         print('Error')
     for item in base_de_datos:
         if item['item_name'] == nombre:
             item['cantidad'] = item['cantidad'] + cantidad
-            actualizar()
+            actualizar(base_de_datos)
 
 
 #Valida si el item ya se encuentra en el carrito
@@ -165,11 +174,32 @@ def positivo(num):
     else:
         return 0
 
+#Calcula la diferencia de días entre la fecha de caducidad y hoy
+def days_between(d2):
+    d1 = datetime.today()
+    d2 = datetime.strptime(d2, '%Y-%m-%d %H:%M:%S')
+    return (d2 - d1).days+1
+
+#Ingresa los clientes a la base de datos
+def ingresar_cliente(nombre, direccion, telefono, tarjeta,db):
+    from LecturaArchivoTexto import actualizar_clientes
+    db.append({'nombre':nombre, 'direccion':direccion,'numero':telefono, 'tarjeta':tarjeta})
+    actualizar_clientes(db)
+    return db[-1]
+
+#Linear search para buscar telefono
+def search_telefono(telefono, db):
+    for item in db:
+        if item['numero']==telefono:
+            return item
+    return 0
+
 #Se utiliza para que no se pierda el archvio original de texto en el momento de usar el unittesting y profiling
-def reparar(arr):
-    from LecturaArchivoTexto import productos
-    productos.clear()
-    for item in arr:
+def reparar(base_de_datos):
+    from LecturaArchivoTexto import Leer
+    productos=[]
+    Leer(productos)
+    for item in base_de_datos:
         productos.append(item)
-    actualizar()
+    actualizar(base_de_datos)
     return 1
