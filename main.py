@@ -1,7 +1,7 @@
 from Funciones import *
-from LecturaArchivoTexto import Leer, Leer_clientes, Leer_pedidos
+from LecturaArchivoTexto import Leer, Leer_clientes, Leer_pedidos, actualizar_clientes
 from LinkedList import *
-from HeapSort import sort
+from Quicksort import sort
 from rich.theme import Theme
 from rich.console import Console
 from rich.table import Table
@@ -223,6 +223,7 @@ while (opcion != 4):
                         cliente=0
                         Leer_pedidos(pedidos)
                         Leer_clientes(clientes)
+                        sort_clientes(clientes)
                         respuesta=input('¿Es su primera vez comprando con nosotros? \n')
                         if respuesta=='Si':
                             nombre=input('Solicitamos su nombre \n')
@@ -230,12 +231,13 @@ while (opcion != 4):
                             numero=int(input('Solicitamos su numero telefonico \n'))
                             tarjeta=int(input('Solicitamos su numero de tarjeta de credito o debito \n'))
                             cliente=ingresar_cliente(nombre, direccion, numero, tarjeta, clientes)
+                            actualizar_clientes(clientes)
                         if respuesta=='No':
                             while cliente==0:
                                 numero=int(input('Solicitamos su numero de telefono \n'))
                                 cliente=search_telefono(numero,clientes)
                                 if(cliente==0):
-                                    print('Número telefónico no encontrado')
+                                    console.print('Número telefónico no encontrado', style="error")
                         
                         enqueue(pedidos, cliente['nombre'], cliente['direccion'], cliente['numero'])
                         table_carrito = Table(title="CARRRITO")
@@ -494,10 +496,17 @@ while (opcion != 4):
             Leer_pedidos(pedidos)
             opcionpedido=1
             while(opcionpedido!=4):
-                print('1. Mostrar pedidos')
-                print('2. Despachar pedido')
-                print('3. Despachar todos los pedidos')
-                print('4. Salir')
+                table_P = Table(title="MENU")
+
+                table_P.add_column("No.", style="bold")
+                table_P.add_column("Opcion", style="bold")
+
+                table_P.add_row("1.", "Mostrar pedidos")
+                table_P.add_row("2.", "Despachar pedido'")
+                table_P.add_row("3.", "Despachar todos los pedidos")
+                table_P.add_row("4.", "Salir")
+
+                console.print(table_P)
                 opcionpedido=int(input("Ingrese la opcion que desea realizar \n"))
                 if opcionpedido==1:
                     ShowQueue(pedidos)
