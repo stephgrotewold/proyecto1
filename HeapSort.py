@@ -1,17 +1,14 @@
-from LecturaArchivoTexto import productos
-from datetime import datetime
-from Queue import days_between
 def heapify(arr, n, i):
     largest = i #root
     l = 2 * i + 1#left
     r = 2 * i + 2#right
 
     #Revisar si left child existe y si es mayor que la raiz
-    if l < n and days_between(str(arr[i]['caducidad'])) < days_between(str(arr[l]['caducidad'])):
+    if l < n and days_between(str(arr[i]['item_id'])) < days_between(str(arr[l]['item_id'])):
         largest = l
   
     # Revisar si right child existe y si es mayor que la raiz
-    if r < n and days_between(str(arr[largest]['caducidad'])) < days_between(str(arr[r]['caducidad'])):
+    if r < n and days_between(str(arr[largest]['item_id'])) < days_between(str(arr[r]['item_id'])):
         largest = r
   
     # Cambiar raiz si es necesario
