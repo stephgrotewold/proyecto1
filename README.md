@@ -134,18 +134,18 @@ INVENTARIO:
  GESTIONAR PEDIDOS:
  
   - Mostrar pedidos
-   * Muestra los pedidos que estan pendientes de ser despachados.
+    * Muestra los pedidos que estan pendientes de ser despachados.
    
   - Despachar pedidos:
-   * Despacha el pedido que se realizo primero.
+    * Despacha el pedido que se realizo primero.
 
 
   - Despachar todos los pedidos:
-   * Despachar todos los pedidos pendientes.
+    * Despachar todos los pedidos pendientes.
 
   
   - Salir:
-   * Regresa al menu principal.
+    * Regresa al menu principal.
   
  ![image](https://user-images.githubusercontent.com/97801260/169166468-c811fa41-a9fa-42e1-bf0f-fdf9787b565e.png)
 
