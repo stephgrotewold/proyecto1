@@ -502,7 +502,7 @@ while (opcion != 4):
                 table_P.add_column("Opcion", style="bold")
 
                 table_P.add_row("1.", "Mostrar pedidos")
-                table_P.add_row("2.", "Despachar pedido'")
+                table_P.add_row("2.", "Despachar pedido")
                 table_P.add_row("3.", "Despachar todos los pedidos")
                 table_P.add_row("4.", "Salir")
 
