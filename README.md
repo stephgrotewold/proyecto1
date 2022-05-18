@@ -132,13 +132,19 @@ INVENTARIO:
 <img width="295" alt="Screen Shot 2022-05-04 at 5 39 28 PM" src="https://user-images.githubusercontent.com/79061296/166842398-eeee45a3-2005-430b-a856-42327c2d3287.png">
 
  GESTIONAR PEDIDOS:
-  -Mostrar pedidos
+ 
+  - Mostrar pedidos
    * Muestra los pedidos que estan pendientes de ser despachados.
-  -Despachar pedidos:
+   
+  - Despachar pedidos:
    * Despacha el pedido que se realizo primero.
-  -Despachar todos los pedidos:
+
+
+  - Despachar todos los pedidos:
    * Despachar todos los pedidos pendientes.
-  -Salir:
+
+  
+  - Salir:
    * Regresa al menu principal.
   
  ![image](https://user-images.githubusercontent.com/97801260/169166468-c811fa41-a9fa-42e1-bf0f-fdf9787b565e.png)
