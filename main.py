@@ -1,21 +1,16 @@
-# Formato: ID del producto, Nombre del producto, Precio del producto, Cantidad del producto en el inventario
-from ctypes import alignment
-from tkinter import CENTER
-from turtle import title
 from Funciones import *
-from LecturaArchivoTexto import productos
-from Queue import *
+from LecturaArchivoTexto import Leer, Leer_clientes, Leer_pedidos
 from LinkedList import *
 from HeapSort import sort
 from rich.theme import Theme
 from rich.console import Console
 from rich.table import Table
 from rich.prompt import Prompt
-import cProfile 
+from PriorityQueue import elim_head, elim_vencidos, print_vencidos
+from Queue import *
 
 cont=0
 productos_carrito=[]
-
 
 custom_theme = Theme({"success": "green", "error": "bold red"})
 console = Console(theme=custom_theme)
@@ -29,11 +24,14 @@ acu = 1
 tot = 0
 ids = []
 pagos = []
+productos=[]
 opcioncompra = 0
 usuario = "admin"
 contra = "contrasena"
-
-while (opcion != 3):
+Leer(productos)
+sort(productos)
+actualizar(productos)
+while (opcion != 4):
     #Menu inicial para elegir la opcion de compra o la de inventario
     table = Table(title="MENU PRINCIPAL", style="bold")
     table.add_column("No.", style="bold")
@@ -41,7 +39,8 @@ while (opcion != 3):
 
     table.add_row("1.", "Comprar")
     table.add_row("2.", "Administrar inventario (requiere autenticación)")
-    table.add_row("3.", "Salir")
+    table.add_row("3.", "Gestionar pedidos")
+    table.add_row("4.", "Salir")
     console.print(table)
 
     try:
@@ -219,6 +218,26 @@ while (opcion != 3):
                     if (cabeza == 0):
                         console.print('Carrito vacio', style="error")
                     else:
+                        clientes=[]
+                        pedidos=[]
+                        cliente=0
+                        Leer_pedidos(pedidos)
+                        Leer_clientes(clientes)
+                        respuesta=input('¿Es su primera vez comprando con nosotros? \n')
+                        if respuesta=='Si':
+                            nombre=input('Solicitamos su nombre \n')
+                            direccion=input('Soliciatmos su direccion \n')
+                            numero=int(input('Solicitamos su numero telefonico \n'))
+                            tarjeta=int(input('Solicitamos su numero de tarjeta de credito o debito \n'))
+                            cliente=ingresar_cliente(nombre, direccion, numero, tarjeta, clientes)
+                        if respuesta=='No':
+                            while cliente==0:
+                                numero=int(input('Solicitamos su numero de telefono \n'))
+                                cliente=search_telefono(numero,clientes)
+                                if(cliente==0):
+                                    print('Número telefónico no encontrado')
+                        
+                        enqueue(pedidos, cliente['nombre'], cliente['direccion'], cliente['numero'])
                         table_carrito = Table(title="CARRRITO")
                         table_carrito.add_column("No.", style="bold")
                         table_carrito.add_column("Producto", style="bold")
@@ -311,7 +330,7 @@ while (opcion != 3):
                                     
                                     #Verifica que haya la cantidad suficiente de productos
                                     if (rest_cantidad(idpro, cantrest, productos) == 0):
-                                        console.print( 'Error, no hay suficientes productos', style="error")
+                                        console.print( 'Error, item no encontrado o no existe cantidad suficiente de productos', style="error")
                                     else:
                                         console.print('Cantidad actualizada con exito', style="success" )
                                 else:
@@ -417,7 +436,8 @@ while (opcion != 3):
                                     else:
                                         #Ingresa el nuevo producto
                                         productos.append({'item_id': id,'item_name': name,'precio': price,'cantidad': quantity, 'caducidad':vencimiento})
-                                        actualizar()
+                                        sort(productos)
+                                        actualizar(productos)
                                         console.print('Producto ingresado con exito', style="success")
                                 else:
                                     console.print('Ingrese número(s) positivo(s)', style="error")
@@ -430,6 +450,8 @@ while (opcion != 3):
                                 #Elimina el item
                                 if (elim_item(id, productos) == 1):
                                     console.print('Item eliminado con exito', style="success")
+                                else:
+                                    console.print('Error', style="error")
                         if(opcion1==7):
                             flag=1
                             table_cad = Table(title="MENU")
@@ -454,17 +476,12 @@ while (opcion != 3):
                                 except:
                                     console.print('Error', style="error")
                                 else:
-                                    productos1=productos.copy()
-                                    sort(productos1)
                                     if(opcionvencido==1):
-                                        if(vencidos(productos1)==0):
-                                            console.print('No se encontraron productos vencidos', style="success")
+                                        print_vencidos()
                                     if(opcionvencido==2):
-                                        if(elim_vencidos(productos1)==0):
-                                            console.print('No se encontraron productos vencidos', style="success")
+                                        elim_vencidos()
                                     if(opcionvencido==3):
-                                        if(pop_item(productos1)==0):
-                                            console.print('No se encontraron productos', style="error")
+                                        elim_head()
                                     if(opcionvencido==4):
                                         flag=0        
                         if (opcion1 < 1 and opcion1 > 7):
@@ -472,5 +489,22 @@ while (opcion != 3):
             else:
                 console.print("Usuario o contraseña incorrecta", style="error")
 
-        if opcion != 1 and opcion != 2 and opcion != 3:
+        if opcion==3:
+            pedidos=[]
+            Leer_pedidos(pedidos)
+            opcionpedido=1
+            while(opcionpedido!=4):
+                print('1. Mostrar pedidos')
+                print('2. Despachar pedido')
+                print('3. Despachar todos los pedidos')
+                print('4. Salir')
+                opcionpedido=int(input("Ingrese la opcion que desea realizar \n"))
+                if opcionpedido==1:
+                    ShowQueue(pedidos)
+                if(opcionpedido==2):
+                    dequeue(pedidos)
+                if(opcionpedido==3):
+                    Empty(pedidos)                    
+
+        if opcion != 1 and opcion != 2 and opcion != 3 and opcion!=4:
             console.print('Ingrese una opción valida', style="error")
