@@ -14,3 +14,13 @@ def dequeue(self):
 
 def IsEmpty(self):
     return len(self) == 0
+
+def Empty(self):
+    while not IsEmpty(self):
+            (dequeue(self))
+    actualizar_pedidos(self)
+
+def ShowQueue(self):
+    if not IsEmpty(self):
+        for item in self:
+            print('Nombre: ' + item['nombre'] + ' Direccion: ' + item['direccion'] + ' Telefono: '+ str(item['numero']) + '\n')
