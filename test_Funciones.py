@@ -1,8 +1,12 @@
 import unittest
 from Funciones import *
-from LecturaArchivoTexto import productos
+from LecturaArchivoTexto import Leer, actualizar
+productos=[]
+Leer(productos)
+productos3=[]
+Leer(productos3)
+print('hi')
 productos_carrito=[]
-productos1 = productos.copy()
 
 class Test_Funciones(unittest.TestCase):
     def test_sum_cantidad(self):
@@ -47,9 +51,10 @@ class Test_Funciones(unittest.TestCase):
         # Validar error cuando no se ingresan enteros
         self.assertRaises(TypeError, elim_item, 'ñ', productos)
         # Validar que se elimine el item
-        self.assertEqual(1, elim_item(1310, productos))
+        
+        
         # Validar error cuando no se encuentra el ID
-        self.assertEqual(0, elim_item(1919, productos))
+        self.assertEqual(0, elim_item(1380, productos))
     
     def test_search_name(self):
         #Validar que se encuentre la base de datos
@@ -90,14 +95,14 @@ class Test_Funciones(unittest.TestCase):
         self.assertEqual(1,positivo(2))
         # Validar un numero negativo
         self.assertEqual(0,positivo(-2))
-    
+        
+    def test_days_between(self):
+        #Validar la diferencia de días
+        self.assertEqual(1, days_between('2022-05-19 00:00:00'))
 
-    def test_reparar(self):
-        self.assertEqual(1,reparar(productos1))
     
-
 
 if __name__=='__main__':
     unittest.main()
-
-
+    print('lmao')
+    actualizar(productos3)
