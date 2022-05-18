@@ -84,7 +84,7 @@ def Leer_clientes(self):
 #Escribe en el archivo de texto la base de datos
 def actualizar(self):
     f = open('database.txt', 'w')
-    from HeapSort import sort
+    from Quicksort import sort
     sort(self)
     for i in self:
         linea = str(i['item_id'])+ " " +i['item_name']+ " "+ str(i['precio'])+ " " +str(i['cantidad'])+' '+ datetime.strftime(i['caducidad'], '%d-%m-%Y')+"\n"
