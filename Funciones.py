@@ -188,5 +188,7 @@ def days_between(d2):
 def ingresar_cliente(nombre, direccion, telefono, tarjeta,db):
     db.append({'nombre':nombre, 'direccion':direccion,'numero':telefono, 'tarjeta':tarjeta})
     sort_clientes(db)
-    return db[-1]
-
+    item = {'nombre':nombre, 'direccion':direccion,'numero':telefono, 'tarjeta':tarjeta}
+    return item
+    
+    
