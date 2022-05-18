@@ -1,31 +1,30 @@
 import unittest
-from Queue import days_between, elim_vencidos, pop_item, vencidos
-from datetime import datetime
-from LecturaArchivoTexto import productos
-productos1 = productos.copy()
+from Queue import *
 
 class test_Queue(unittest.TestCase):
-    def test_days_between(self):
-        #Validar la diferencia de días
-        self.assertEqual(1, days_between('2022-05-05 00:00:00'))
-
-    def test_vencidos(self):
-        prueba=[{'caducidad':datetime.strptime('03-03-2023', '%d-%m-%Y')}]
-        #Validar cuando no se encuentra ningun producto vencido
-        self.assertEqual(0, vencidos(prueba))
+    def test_enqueue(self):
+        #Verificar que se ingrese en la queue
+        ordenes=[]
+        enqueue(ordenes, 'Esteban', 'Zona16', '35351054')
+        self.assertEqual(1,len(ordenes))
     
-    def test_elim_vencidos(self):
-        prueba=[{'caducidad':datetime.strptime('03-03-2023', '%d-%m-%Y')}]
-        #Validar cuando no se encuentra ningun producto vencido 
-        self.assertEqual(0,elim_vencidos(prueba))
-        prueba=[]
-        #Validar cuando no hay ningun producto vencido
-        self.assertEqual(0,elim_vencidos(prueba))
+    def test_dequeue(self):
+        #Verificar que se realiza el dequeue
+        ordenes=[{'nombre': 'Esteban', 'direccion': 'Zona16', 'numero': 35351054}]
+        dequeue(ordenes)
+        self.assertEqual(0, len(ordenes))
+    
+    def test_IsEmpty(self):
+        #Verifiar que la cola se encuentra vacia
+        ordenes=[]
+        self.assertEqual(True, IsEmpty(ordenes))
 
-    def test_pop_item(self):
-        prueba=[]
-        #Validar cuando el array esta vacío
-        self.assertEqual(0,pop_item(prueba))
+    def test_Empty(self):
+        #Verificar que se vacíe la cola
+        ordenes=[{'nombre': 'Esteban', 'direccion': 'Zona16', 'numero': 35351054},{'nombre': 'Josue', 'direccion': 'Mixco', 'numero': 35351055}]
+        Empty(ordenes)
+        self.assertEqual(0,len(ordenes))
+
 
     
 
