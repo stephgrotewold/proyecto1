@@ -1,4 +1,5 @@
-from BinarySearch import binarySearch
+from BinarySearch import binarySearch, binarySearch_clientes
+from Quicksort import sort_clientes
 from LecturaArchivoTexto import actualizar
 from rich.console import Console
 from rich.theme import Theme
@@ -173,6 +174,9 @@ def positivo(num):
         return 1
     else:
         return 0
+#Busqueda de telefono a traves de binary search
+def search_telefono(telefono, db):
+    return binarySearch_clientes(db,telefono)
 
 #Calcula la diferencia de días entre la fecha de caducidad y hoy
 def days_between(d2):
@@ -182,24 +186,7 @@ def days_between(d2):
 
 #Ingresa los clientes a la base de datos
 def ingresar_cliente(nombre, direccion, telefono, tarjeta,db):
-    from LecturaArchivoTexto import actualizar_clientes
     db.append({'nombre':nombre, 'direccion':direccion,'numero':telefono, 'tarjeta':tarjeta})
-    actualizar_clientes(db)
+    sort_clientes(db)
     return db[-1]
 
-#Linear search para buscar telefono
-def search_telefono(telefono, db):
-    for item in db:
-        if item['numero']==telefono:
-            return item
-    return 0
-
-#Se utiliza para que no se pierda el archvio original de texto en el momento de usar el unittesting y profiling
-def reparar(base_de_datos):
-    from LecturaArchivoTexto import Leer
-    productos=[]
-    Leer(productos)
-    for item in base_de_datos:
-        productos.append(item)
-    actualizar(base_de_datos)
-    return 1
