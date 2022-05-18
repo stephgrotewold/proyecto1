@@ -11,6 +11,7 @@ Para esta segunda entrega, se convirtió la base de datos a un archivo de texto.
 
 REQUISITOS:
 - Librería Rich ($pip install rich)
+- Librería Cryptography ($pip install cryptography)
 - Archivo de texto (database.txt)
 
 COMPRAS:
@@ -35,6 +36,9 @@ COMPRAS:
 - Check-Out
   Output:
   * Muestra el carrito.
+  * Solicita contestar una pregunta sobre si es cliente antiguo o nuevo.
+  * Si es nuevo cliente, le solicita: nombre, direccion, numero de telefono y tarjeta de credito.
+  * Si es un cliente antiguo, solo le solicita su numero de telefono para terminar la compra.
   * Muestra el total pagado.
   * Muestra un mensaje confirmando la transacción.
 
