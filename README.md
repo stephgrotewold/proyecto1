@@ -5,7 +5,8 @@ El proyecto tiene dos secciones, compras e inventario.
 SEGUNDA ENTREGA: 
 Para esta segunda entrega, se convirtió la base de datos a un archivo de texto. Se agregaron fechas de caducidad a los productos, los cuales son ordenados por medio de un heapsort(del más próximo a vencer al menos próximo). También se utilizó un queue para eliminar los productos vencido o próximos a vencer. 
 
-<img width="422" alt="Screen Shot 2022-05-04 at 5 38 54 PM" src="https://user-images.githubusercontent.com/79061296/166842323-ab79d621-abf6-4e68-9f2f-d692bc8019f4.png">
+![image](https://user-images.githubusercontent.com/97801260/169165769-eed8642d-0fc7-43e2-b525-95b665a1626c.png)
+
 
 
 
