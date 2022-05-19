@@ -14,6 +14,7 @@ REQUISITOS:
 - Librería Rich ($pip install rich)
 - Librería Cryptography ($pip install cryptography)
 - Archivo de texto (database.txt)
+- Los archivos (txt.encryption) se generan con una linea vacio, antes de correr el programa, asegurarse que este completamente vacio
 
 COMPRAS:
 - Agregar productos al carrito
